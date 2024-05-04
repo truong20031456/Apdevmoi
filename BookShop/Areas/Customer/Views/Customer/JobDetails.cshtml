@@ -1,0 +1,35 @@
+﻿@model JobListingModel
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+<p>Location: @Model.Location</p>
+<p>Application Deadline: @Model.ApplicationDeadline.ToShortDateString()</p>
+
+@using (Html.BeginForm("Apply", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" name="jobId" value="@Model.JobListingId" />
+
+    <!-- Display error messages if there are any -->
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!-- Input field for uploading image -->
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image" accept="image/*" required />
+
+    <!-- Display validation error for image field if any -->
+    @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+
+    <button id="applyButton" type="submit">Apply</button>
+}
+
+@if (ViewBag.ApplySuccess != null && ViewBag.ApplySuccess)
+{
+    <p>Application submitted successfully!</p>
+    <script>
+        // Change the button text to "Applied" if the application was successful
+        window.onload = function () {
+            document.getElementById("applyButton").innerHTML = "Applied";
+            document.getElementById("image").disabled = true; // Disable the image input field
+        };
+    </script>
+}
