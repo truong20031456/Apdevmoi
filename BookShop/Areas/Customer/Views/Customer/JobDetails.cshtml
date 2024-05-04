@@ -1,0 +1,30 @@
+﻿@model JobListingModel
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+<p>Location: @Model.Location</p>
+<p>Application Deadline: @Model.ApplicationDeadline.ToShortDateString()</p>
+
+@using (Html.BeginForm("Apply", "Customer", FormMethod.Post))
+{
+    <input type="hidden" name="jobId" value="@Model.JobListingId" />
+    <label for="resume">Resume:</label>
+    <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx" />
+    <button id="applyButton" type="submit" onclick="toggleApplyButton()">Apply</button>
+}
+
+@if (ViewBag.ApplySuccess != null)
+{
+    <p>@ViewBag.ApplySuccess</p>
+}
+
+<script>
+    function toggleApplyButton() {
+        var button = document.getElementById("applyButton");
+        if (button.innerHTML.trim() === "Applied") {
+            button.innerHTML = "Apply";
+        } else {
+            button.innerHTML = "Applied";
+        }
+    }
+</script>
