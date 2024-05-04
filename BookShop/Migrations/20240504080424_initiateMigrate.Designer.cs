@@ -4,6 +4,7 @@ using BookShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240504080424_initiateMigrate")]
+    partial class initiateMigrate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,18 +117,9 @@ namespace BookShop.Migrations
                     b.Property<int?>("EmployerApplicationId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ImageUploaded")
-                        .HasColumnType("bit");
-
-=======
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -149,10 +143,6 @@ namespace BookShop.Migrations
                             ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 1,
                             Description = "Hello",
-<<<<<<< HEAD
-                            ImageUploaded = false,
-=======
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
                             Location = "NY",
                             Title = "C# Programming"
                         },
@@ -162,10 +152,6 @@ namespace BookShop.Migrations
                             ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 2,
                             Description = "Learning Harder",
-<<<<<<< HEAD
-                            ImageUploaded = false,
-=======
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
                             Location = "NY",
                             Title = "Advanced Programming"
                         },
@@ -175,10 +161,6 @@ namespace BookShop.Migrations
                             ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 3,
                             Description = "Basic language",
-<<<<<<< HEAD
-                            ImageUploaded = false,
-=======
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
                             Location = "NY",
                             Title = "Java Programming"
                         },
@@ -188,10 +170,6 @@ namespace BookShop.Migrations
                             ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 4,
                             Description = "Really not easy",
-<<<<<<< HEAD
-                            ImageUploaded = false,
-=======
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
                             Location = "NY",
                             Title = "Data Structures"
                         });

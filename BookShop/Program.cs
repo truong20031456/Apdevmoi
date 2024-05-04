@@ -52,11 +52,19 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
+<<<<<<< HEAD
 /*app.MapControllerRoute(
     name: "Customer",
     pattern: "Customer/JobDetails/{id}",
     defaults: new { controller = "Customer", action = "JobDetails" }
 );*/
+=======
+app.MapControllerRoute(
+    name: "Customer",
+    pattern: "Customer/JobDetails/{id}",
+    defaults: new { controller = "Customer", action = "JobDetails" }
+);
+>>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
 
 app.MapControllerRoute(
     name: "default",
