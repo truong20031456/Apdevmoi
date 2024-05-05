@@ -19,6 +19,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 //builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
