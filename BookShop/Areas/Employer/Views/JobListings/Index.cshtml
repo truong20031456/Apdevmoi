@@ -27,51 +27,40 @@
             <th>
                 @Html.DisplayNameFor(model => model.Location)
             </th>
-<<<<<<< HEAD
             
-=======
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.JobListingId)
                 </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationDeadline)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-<<<<<<< HEAD
-          
-=======
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.JobListingId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.JobListingId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.JobListingId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDeadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+               
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JobListingId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.JobListingId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.JobListingId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
-    <p>
-        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    </p>
 </table>
+
+<p>
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+</p>

@@ -5,8 +5,8 @@ namespace BookShop.Models.ViewModels
 {
     public class JobVM
     {
-        public ApplicationModel Application { get; set; }
+        public ApplicationModel? Application { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> Categories { get; set; }
+        public IEnumerable<SelectListItem>? Categories { get; set; }
     }
 }

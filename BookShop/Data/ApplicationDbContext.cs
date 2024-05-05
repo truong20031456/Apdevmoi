@@ -1,6 +1,5 @@
 ﻿using System;
 using BookShop.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -9,11 +8,9 @@ namespace BookShop.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-      
-
-        public DbSet<ApplicationModel> ApplicationModel { get; set; }
+        public DbSet<ApplicationModel> ApplicationModels { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<JobListingModel> JobListingModel { get; set; }
+        public DbSet<JobListingModel> JobListingModels { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -28,17 +25,20 @@ namespace BookShop.Data
                 var tableName = entityType.GetTableName();
                 if (tableName.StartsWith("AspNet"))
                 {
-                    entityType.SetTableName(tableName.Substring(6));
+                    entityType.SetTableName(tableName[6..]);
                 }
             }
 
             // Set keys to be generated on add
-            var keysProperties = modelBuilder.Model.GetEntityTypes()
-                .Select(x => x.FindPrimaryKey())
-                .SelectMany(x => x.Properties);
-            foreach (var property in keysProperties)
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                property.ValueGenerated = ValueGenerated.OnAdd;
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.Name == "Id" || property.Name == $"{entityType.ClrType.Name}Id")
+                    {
+                        property.ValueGenerated = ValueGenerated.OnAdd;
+                    }
+                }
             }
 
             // Seed initial data
@@ -50,48 +50,43 @@ namespace BookShop.Data
             );
 
             modelBuilder.Entity<JobListingModel>().HasData(
-    new JobListingModel
-    {
-        JobListingId = 1,
-        Title = "C# Programming",
-        Description = "Hello",
-        ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
-        Location = "NY",
-        CategoryId = 1,
-        
-    },
-    new JobListingModel
-    {
-        JobListingId = 2,
-        Title = "Advanced Programming",
-        Description = "Learning Harder",
-        ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
-        Location = "NY",
-        CategoryId = 2,
-        
-    },
-    new JobListingModel
-    {
-        JobListingId = 3,
-        Title = "Java Programming",
-        Description = "Basic language",
-        ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
-        Location = "NY",
-        CategoryId = 3,
-         
-    },
-    new JobListingModel
-    {
-        JobListingId = 4,
-        Title = "Data Structures",
-        Description = "Really not easy",
-        ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
-        Location = "NY",
-        CategoryId = 4,
-     
-    }
-);
-
+                new JobListingModel
+                {
+                    JobListingId = 1,
+                    Title = "C# Programming",
+                    Description = "Hello",
+                    ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
+                    Location = "NY",
+                    CategoryId = 1
+                },
+                new JobListingModel
+                {
+                    JobListingId = 2,
+                    Title = "Advanced Programming",
+                    Description = "Learning Harder",
+                    ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
+                    Location = "NY",
+                    CategoryId = 2
+                },
+                new JobListingModel
+                {
+                    JobListingId = 3,
+                    Title = "Java Programming",
+                    Description = "Basic language",
+                    ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
+                    Location = "NY",
+                    CategoryId = 3
+                },
+                new JobListingModel
+                {
+                    JobListingId = 4,
+                    Title = "Data Structures",
+                    Description = "Really not easy",
+                    ApplicationDeadline = DateTime.UtcNow.Date.AddDays(-5),
+                    Location = "NY",
+                    CategoryId = 4
+                }
+            );
         }
     }
-    }
+}

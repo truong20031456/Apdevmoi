@@ -14,7 +14,7 @@ namespace BookShop.Repository
 
 		public void Update(ApplicationModel Application)
 		{
-			_context.ApplicationModel.Update(Application);
+			_context.ApplicationModels.Update(Application);
 		}
 	}
 }

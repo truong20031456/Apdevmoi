@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookShop.Migrations
 {
     /// <inheritdoc />
-    public partial class initiateMigrate : Migration
+    public partial class InitiateMigrate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ApplicationModel",
+                name: "ApplicationModels",
                 columns: table => new
                 {
                     ApplicationId = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace BookShop.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicationModel", x => x.ApplicationId);
+                    table.PrimaryKey("PK_ApplicationModels", x => x.ApplicationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +87,7 @@ namespace BookShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobListingModel",
+                name: "JobListingModels",
                 columns: table => new
                 {
                     JobListingId = table.Column<int>(type: "int", nullable: false)
@@ -103,14 +103,14 @@ namespace BookShop.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobListingModel", x => x.JobListingId);
+                    table.PrimaryKey("PK_JobListingModels", x => x.JobListingId);
                     table.ForeignKey(
-                        name: "FK_JobListingModel_ApplicationModel_EmployerApplicationId",
+                        name: "FK_JobListingModels_ApplicationModels_EmployerApplicationId",
                         column: x => x.EmployerApplicationId,
-                        principalTable: "ApplicationModel",
+                        principalTable: "ApplicationModels",
                         principalColumn: "ApplicationId");
                     table.ForeignKey(
-                        name: "FK_JobListingModel_Categories_CategoryId",
+                        name: "FK_JobListingModels_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
@@ -235,24 +235,24 @@ namespace BookShop.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "JobListingModel",
+                table: "JobListingModels",
                 columns: new[] { "JobListingId", "ApplicationDeadline", "CategoryId", "Description", "EmployerApplicationId", "ImagePath", "ImageUploaded", "Location", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc), 1, "Hello", null, null, false, "NY", "C# Programming" },
-                    { 2, new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc), 2, "Learning Harder", null, null, false, "NY", "Advanced Programming" },
-                    { 3, new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc), 3, "Basic language", null, null, false, "NY", "Java Programming" },
-                    { 4, new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc), 4, "Really not easy", null, null, false, "NY", "Data Structures" }
+                    { 1, new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc), 1, "Hello", null, null, false, "NY", "C# Programming" },
+                    { 2, new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc), 2, "Learning Harder", null, null, false, "NY", "Advanced Programming" },
+                    { 3, new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc), 3, "Basic language", null, null, false, "NY", "Java Programming" },
+                    { 4, new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc), 4, "Really not easy", null, null, false, "NY", "Data Structures" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobListingModel_CategoryId",
-                table: "JobListingModel",
+                name: "IX_JobListingModels_CategoryId",
+                table: "JobListingModels",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobListingModel_EmployerApplicationId",
-                table: "JobListingModel",
+                name: "IX_JobListingModels_EmployerApplicationId",
+                table: "JobListingModels",
                 column: "EmployerApplicationId");
 
             migrationBuilder.CreateIndex(
@@ -299,7 +299,7 @@ namespace BookShop.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "JobListingModel");
+                name: "JobListingModels");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");
@@ -317,7 +317,7 @@ namespace BookShop.Migrations
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "ApplicationModel");
+                name: "ApplicationModels");
 
             migrationBuilder.DropTable(
                 name: "Categories");

@@ -23,7 +23,7 @@ namespace BookShop.Areas.Employer.Controllers
         [Authorize(Roles = "Employer")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.JobListingModel.ToListAsync());
+            return View(await _context.JobListingModels.ToListAsync());
         }
 
 
@@ -37,7 +37,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var jobListingModel = await _context.JobListingModel
+            var jobListingModel = await _context.JobListingModels
                 .FirstOrDefaultAsync(m => m.JobListingId == id);
             if (jobListingModel == null)
             {
@@ -82,7 +82,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var jobListingModel = await _context.JobListingModel.FindAsync(id);
+            var jobListingModel = await _context.JobListingModels.FindAsync(id);
             if (jobListingModel == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var jobListingModel = await _context.JobListingModel
+            var jobListingModel = await _context.JobListingModels
                 .FirstOrDefaultAsync(m => m.JobListingId == id);
             if (jobListingModel == null)
             {
@@ -154,10 +154,10 @@ namespace BookShop.Areas.Employer.Controllers
         [Authorize(Roles = "Employer")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var jobListingModel = await _context.JobListingModel.FindAsync(id);
+            var jobListingModel = await _context.JobListingModels.FindAsync(id);
             if (jobListingModel != null)
             {
-                _context.JobListingModel.Remove(jobListingModel);
+                _context.JobListingModels.Remove(jobListingModel);
             }
 
             await _context.SaveChangesAsync();
@@ -166,7 +166,7 @@ namespace BookShop.Areas.Employer.Controllers
 
         private bool JobListingModelExists(int id)
         {
-            return _context.JobListingModel.Any(e => e.JobListingId == id);
+            return _context.JobListingModels.Any(e => e.JobListingId == id);
         }
     }
 }

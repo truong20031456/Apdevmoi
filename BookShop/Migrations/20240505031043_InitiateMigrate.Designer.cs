@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240504080424_initiateMigrate")]
-    partial class initiateMigrate
+    [Migration("20240505031043_InitiateMigrate")]
+    partial class InitiateMigrate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace BookShop.Migrations
 
                     b.HasKey("ApplicationId");
 
-                    b.ToTable("ApplicationModel");
+                    b.ToTable("ApplicationModels");
                 });
 
             modelBuilder.Entity("BookShop.Models.Category", b =>
@@ -117,8 +117,11 @@ namespace BookShop.Migrations
                     b.Property<int?>("EmployerApplicationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ImageUploaded")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -134,42 +137,46 @@ namespace BookShop.Migrations
 
                     b.HasIndex("EmployerApplicationId");
 
-                    b.ToTable("JobListingModel");
+                    b.ToTable("JobListingModels");
 
                     b.HasData(
                         new
                         {
                             JobListingId = 1,
-                            ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApplicationDeadline = new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 1,
                             Description = "Hello",
+                            ImageUploaded = false,
                             Location = "NY",
                             Title = "C# Programming"
                         },
                         new
                         {
                             JobListingId = 2,
-                            ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApplicationDeadline = new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 2,
                             Description = "Learning Harder",
+                            ImageUploaded = false,
                             Location = "NY",
                             Title = "Advanced Programming"
                         },
                         new
                         {
                             JobListingId = 3,
-                            ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApplicationDeadline = new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 3,
                             Description = "Basic language",
+                            ImageUploaded = false,
                             Location = "NY",
                             Title = "Java Programming"
                         },
                         new
                         {
                             JobListingId = 4,
-                            ApplicationDeadline = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApplicationDeadline = new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             CategoryId = 4,
                             Description = "Really not easy",
+                            ImageUploaded = false,
                             Location = "NY",
                             Title = "Data Structures"
                         });
@@ -330,11 +337,9 @@ namespace BookShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
@@ -354,11 +359,9 @@ namespace BookShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
@@ -371,15 +374,12 @@ namespace BookShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")

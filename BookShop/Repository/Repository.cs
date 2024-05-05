@@ -32,7 +32,7 @@ namespace BookShop.Repository
             query = query.Where(predicate);
             if (!String.IsNullOrEmpty(includeProperty))
             {
-                query.Include(includeProperty).ToList();
+                query = query.Include(includeProperty);
             }
             return query.FirstOrDefault() ?? default;
         }
@@ -42,9 +42,10 @@ namespace BookShop.Repository
             IQueryable<T> query = _dbSet;
             if (!String.IsNullOrEmpty(includedProperty))
             {
-                query.Include(includedProperty).ToList();
+                query = query.Include(includedProperty);
             }
             return query.ToList();
         }
+
     }
 }

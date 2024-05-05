@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<JobListingModel>
+
 @{
     ViewData["Title"] = "JobDetails";
 }
@@ -11,12 +12,6 @@
         <h2>@job.Title</h2>
         <p>@job.Description</p>
         <p>Location: @job.Location</p>
-<<<<<<< HEAD
         <a href="@Url.Action("JobDetails", new { id = job.JobListingId })">View Details</a>
-
-=======
-        <a href="/Customer/JobDetails/@job.JobListingId">ViewDetails</a>
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
-
     </div>
 }

@@ -5,7 +5,7 @@
 <p>Location: @Model.Location</p>
 <p>Application Deadline: @Model.ApplicationDeadline.ToShortDateString()</p>
 
-<<<<<<< HEAD
+@* <<<<<<< HEAD *@
 @using (Html.BeginForm("Apply", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="hidden" name="jobId" value="@Model.JobListingId" />
@@ -34,7 +34,7 @@
         };
     </script>
 }
-=======
+@* ======= *@
 @using (Html.BeginForm("Apply", "Customer", FormMethod.Post))
 {
     <input type="hidden" name="jobId" value="@Model.JobListingId" />
@@ -58,4 +58,4 @@
         }
     }
 </script>
->>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905
+@* >>>>>>> a5d40dac69ad7c2a6688862db1c94f0182431905 *@

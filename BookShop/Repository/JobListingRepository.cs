@@ -14,7 +14,7 @@ namespace BookShop.Repository
 
 		public void Update(JobListingModel jobListing)
 		{
-			_context.JobListingModel.Update(jobListing);
+			_context.JobListingModels.Update(jobListing);
 		}
 	}
 }

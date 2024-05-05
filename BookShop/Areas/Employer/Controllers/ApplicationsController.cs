@@ -23,7 +23,7 @@ namespace BookShop.Areas.Employer.Controllers
         [Authorize(Roles = "Employer,Customer")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ApplicationModel.ToListAsync());
+            return View(await _context.ApplicationModels.ToListAsync());
         }
 
         // GET: ApplicationModels/Details/5
@@ -36,7 +36,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var applicationModel = await _context.ApplicationModel
+            var applicationModel = await _context.ApplicationModels
                 .FirstOrDefaultAsync(m => m.ApplicationId == id);
             if (applicationModel == null)
             {
@@ -82,7 +82,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var applicationModel = await _context.ApplicationModel.FindAsync(id);
+            var applicationModel = await _context.ApplicationModels.FindAsync(id);
             if (applicationModel == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace BookShop.Areas.Employer.Controllers
                 return NotFound();
             }
 
-            var applicationModel = await _context.ApplicationModel
+            var applicationModel = await _context.ApplicationModels
                 .FirstOrDefaultAsync(m => m.ApplicationId == id);
             if (applicationModel == null)
             {
@@ -154,10 +154,10 @@ namespace BookShop.Areas.Employer.Controllers
         [Authorize(Roles = "Employer")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var applicationModel = await _context.ApplicationModel.FindAsync(id);
+            var applicationModel = await _context.ApplicationModels.FindAsync(id);
             if (applicationModel != null)
             {
-                _context.ApplicationModel.Remove(applicationModel);
+                _context.ApplicationModels.Remove(applicationModel);
             }
 
             await _context.SaveChangesAsync();
@@ -166,7 +166,7 @@ namespace BookShop.Areas.Employer.Controllers
 
         private bool ApplicationModelExists(int id)
         {
-            return _context.ApplicationModel.Any(e => e.ApplicationId == id);
+            return _context.ApplicationModels.Any(e => e.ApplicationId == id);
         }
     }
 }
